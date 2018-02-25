@@ -1,0 +1,34 @@
+ <!DOCTYPE html>
+<html>
+<head>
+
+    <title>Acme Customers SPA</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"/>
+    
+</head>
+<body>
+    <div class="container">
+        <h1>Acme Customers SPA</h1>
+        <div class="form-row">
+            <div class="col-sm-3 my-1">
+                <input name="email"  class="form-control mb-2 mr-sm-2" id='email' placeholder="email"/>
+            </div>
+            <div class="col-auto my-1">
+                <button id="submit-btn" class="btn btn-primary mb-2">Add New Customer</button>
+            </div>
+        </div>
+
+
+        <div id='message' style="padding:12px"></div>
+        <div>
+            <ul id="customer-list" class="list-group list-group-flush">
+            
+            </ul>
+        </div>
+
+    </div>
+    </div>
+    
+</body>
+<script src="./bundle.js"></script>
+</html>
