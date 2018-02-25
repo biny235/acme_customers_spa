@@ -34,9 +34,6 @@ app.delete('/api/customers/:id', (req, res, next)=>{
         .then(customer => {
             customer.destroy()
         })
-        .then(()=>{
-            res.send('Customer Deleted')
-        })
         .catch(next)
 })
 

@@ -39,22 +39,18 @@ const handleError = (error)=>{
 const customerList= document.getElementById('customer-list');
 fetch('/api/customers')
     .then(result => result.json())
-    .then(customers => {
-        
+    .then(customers => {        
         customers.forEach(customer => {
             customerList.appendChild(createLi(customer));
         });
     })
     .catch(error => console.log(error))
 
-
-
 const submitBtn = document.getElementById('submit-btn');
 
 submitBtn.addEventListener('click', ()=>{
     const email = document.getElementById('email').value
-    console.log(email)
-   
+    console.log(email)   
     fetch('/api/customers',{
         method: 'POST',
         body: JSON.stringify({email}),
@@ -70,6 +66,3 @@ submitBtn.addEventListener('click', ()=>{
         })
         .catch(error => console.log(error))
 })
-
-
-
