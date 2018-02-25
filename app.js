@@ -1,7 +1,4 @@
 const createLi = (customer)=>{  
-    if(customer.error){
-        return handleError(customer.error)
-    }
     const li = document.createElement('li');
     const removeBtn = document.createElement('button');
     removeBtn.innerHTML = "&times"
@@ -20,7 +17,7 @@ const createLi = (customer)=>{
     return li
 };
 
-const handleError = (error)=>{
+const postError = (error)=>{
     message = document.getElementById('message');
     message.innerHTML = error;
     message.classList.add('alert','alert-danger', 'alert-dismissible','fade','show')
@@ -36,9 +33,21 @@ const handleError = (error)=>{
     })
 }
 
+function handleErrors(response) {
+    if (!response.ok) {
+        return response.json()
+                .then(res => {
+                    postError(res.error)
+                    throw Error(res.error)
+                })
+       
+    }
+    return response.json();
+}
+
 const customerList= document.getElementById('customer-list');
 fetch('/api/customers')
-    .then(result => result.json())
+    .then(handleErrors)
     .then(customers => {        
         customers.forEach(customer => {
             customerList.appendChild(createLi(customer));
@@ -59,7 +68,7 @@ submitBtn.addEventListener('click', ()=>{
         },
         
         })
-        .then(result => result.json())
+        .then(handleErrors)
         .then(customer => {
             console.log(customer)
             customerList.appendChild(createLi(customer));
