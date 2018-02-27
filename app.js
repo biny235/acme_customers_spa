@@ -36,11 +36,11 @@ const postError = (error)=>{
 function handleErrors(response) {
     if (!response.ok) {
         return response.json()
-                .then(res => {
-                    postError(res.error)
-                    throw Error(res.error)
-                })
-       
+            .then(res => {
+                console.log(res.err.errors[0].message)
+                postError(res.err.errors[0].message)
+                throw Error(res.err.errors[0].message)
+                })       
     }
     return response.json();
 }
@@ -65,8 +65,7 @@ submitBtn.addEventListener('click', ()=>{
         body: JSON.stringify({email}),
         headers: { 
             'Content-Type': 'application/json' 
-        },
-        
+        },        
         })
         .then(handleErrors)
         .then(customer => {
